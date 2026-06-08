@@ -185,12 +185,12 @@ Uygulama aç → "Bütçeni Yönet" banner
 
 ## Açık Sorular
 
-- [ ] Kategorileme için ML mi, kural motoru mu, ikisi birden mi?
-- [ ] Banka bağlantısı için 3. parti aggregator (Fincloud, Param vb.) mı yoksa direkt BDDK API mi?
+- [x] Kategorileme için ML mi, kural motoru mu, ikisi birden mi? → **Hibrit, kural öncelikli** (MCC + lookup + regex + ML fallback). Detay: [`HK_VERI_KATMANI.md`](./HK_VERI_KATMANI.md)
+- [x] Banka bağlantısı için 3. parti aggregator mı yoksa direkt BDDK API mi? → **Aggregator ile başla, kademeli direkte geç.** Detay: [`HK_VERI_KATMANI.md`](./HK_VERI_KATMANI.md)
 - [ ] Veri ne kadar süre saklanacak?
 - [ ] Önce iOS mu Android mi Web mi?
 - [ ] Bütçe özelliği premium mi (ücretli) yoksa ücretsiz mi?
-- [ ] Mevcut HangiKredi kullanıcı hesabıyla mı entegre?
+- [x] Mevcut HangiKredi kullanıcı hesabıyla mı entegre? → **Evet, tek SSO, ayrı hesap yok.** Detay: [`HK_VERI_KATMANI.md`](./HK_VERI_KATMANI.md)
 
 ---
 

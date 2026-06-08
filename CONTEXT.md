@@ -1,55 +1,50 @@
 # CONTEXT.md — Ortak Proje Bağlamı
 
-> Bu dosya her iki taraf tarafından güncellenir.
-
 ---
 
 ## Son Güncelleme
 - **Tarih:** 2026-06-08
-- **Güncelleyen:** Seran (Claude aracılığıyla)
+- **Güncelleyen:** Utku
 
 ---
 
 ## Proje Özeti
 
-**HangiKredi Bütçe Yönetimi** — Açık bankacılık (OBS/HES) ile banka hesaplarını bağlayarak otomatik harcama takibi, kategori bazlı bütçe ve HangiKredi ürün önerileriyle entegre kişisel finans aracı.
+**HangiKredi Bütçe Yönetimi** — Açık bankacılık (OBS/HES) ile otomatik harcama takibi + HangiKredi ürün öneri motoruyla entegre kişisel finans aracı.
 
-Dökümanlar:
-- [`HK_BUTCE_YONETIMI.md`](./HK_BUTCE_YONETIMI.md) — Ana ürün dökümanı (detaylı)
-- [`BUTCE_YONETIMI.md`](./BUTCE_YONETIMI.md) — Genel bütçe araç konsepti
+### Dökümanlar
+| Dosya | İçerik |
+|-------|--------|
+| [`HK_BUTCE_YONETIMI.md`](./HK_BUTCE_YONETIMI.md) | Genel ürün dökümanı, 3 fazlı roadmap |
+| [`HK_ENTEGRASYON_DETAY.md`](./HK_ENTEGRASYON_DETAY.md) | HK entegrasyonu: finansal profil, öneri motoru, skor |
+| [`BUTCE_YONETIMI.md`](./BUTCE_YONETIMI.md) | Genel bütçe araç konsepti |
 
 ---
 
 ## Alınan Kararlar
-
-**Ürün (Utku, 2026-06-08):**
-- ✅ Standalone özellik olarak konumlanacak
-- ✅ Veri kaynağı: Açık Bankacılık (OBS/HES), manuel giriş değil
-- ✅ 3 fazlı yol haritası: MVP → Büyüme → HK Entegrasyonu
-
-**Workflow (Seran, 2026-06-08):**
-- [x] Seran tarafı Claude oturumlarında repo'ya otomatik commit/push açıldı. `gh` CLI kuruldu, auth aktif. Her önemli karar anında Claude CONTEXT.md güncellemesini onay için sunuyor, onay sonrası push ediyor. Manuel kopyala-yapıştır akışı kaldırıldı. Detay: [`SERAN_GUIDE.md`](./SERAN_GUIDE.md)
+- ✅ Standalone özellik
+- ✅ Veri kaynağı: Açık Bankacılık (OBS/HES)
+- ✅ 3 fazlı roadmap (MVP → Büyüme → HK Entegrasyonu)
+- ✅ Öneri motoru: trigger → insight → öneri → aksiyon zinciri
+- ✅ Finansal Sağlık Skoru (0-100) entegre edilecek
+- ✅ Öneri tonu: reklam değil, danışman
 
 ---
 
-## Açık Sorular / Bekleyen Maddeler
-- [ ] Kategorileme: ML mi, kural motoru mu?
+## Açık Sorular
 - [ ] Banka bağlantısı: 3. parti aggregator mı, direkt BDDK API mi?
 - [ ] Platform önceliği: iOS / Android / Web?
 - [ ] Premium mi, ücretsiz mi?
-- [ ] Mevcut HK kullanıcı hesabıyla entegre mi?
+- [ ] Öneri motoru: kural bazlı mı başlasın, ML ne zaman?
+- [ ] Banka bağlantısı olmayan kullanıcılara öneri nasıl?
+- [ ] Sigorta önerileri hangi fazda?
 
 ---
 
 ## Son Oturum Özeti (Utku)
-**2026-06-08:** HangiKredi bütçe yönetimi özelliği tasarlandı. Açık bankacılık entegrasyonu, 3 fazlı roadmap, ekranlar, başarı metrikleri ve teknik notlar dökümanlandı. Kritik farklılaşma: harcama verisi + ürün öneri motoru kombinasyonu.
+**2026-06-08:** HK entegrasyonu detaylandırıldı. Finansal profil katmanları (gelir/borç/harcama/tasarruf), öneri motoru mantığı (trigger→insight→öneri), kredi kartı/kredi/mevduat/sigorta öneri kuralları, Finansal Sağlık Skoru (0-100 bileşenleri), öneri sunuş deneyimi (danışman tonu) ve teknik mimari dökümanlandı.
 
 ---
 
 ## Son Oturum Özeti (Seran)
-**2026-06-08:** İlk oturum. Repo workflow'u otomasyona alındı:
-- `gh` CLI tarball ile `~/.local/gh/` altına kuruldu (Homebrew sahipliği bozuk olduğu için brew kullanılamadı).
-- `gh auth login` ile auth aktif edildi; `seranpoyraz` olarak push yetkisi doğrulandı.
-- Claude memory'sine "her konuşmada CONTEXT.md'yi oku, önemli karar anında onayla-commit-push" kuralı yazıldı (`feedback-hk-context-update`).
-- `SERAN_GUIDE.md` yeni otomatik akışı yansıtacak şekilde güncellendi.
-- Bütçe yönetimi açık sorularına Seran tarafından henüz cevap verilmedi — bir sonraki oturumda ele alınacak.
+<!-- Seran güncelleyecek -->

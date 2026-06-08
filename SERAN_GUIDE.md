@@ -14,36 +14,44 @@ Sen  ←→  Claude  ←→  CONTEXT.md  ←→  Claude  ←→  Utku
 
 ---
 
-## Her Oturuma Başlarken
+## Otomatik Davranış (Seran tarafı)
 
-1. [`CONTEXT.md`](./CONTEXT.md) dosyasını aç, içeriğini kopyala
-2. Claude sohbetini başlat ve şunu söyle:
+Seran'ın Claude oturumlarında şu kural memory'de kayıtlı:
 
-```
-Aşağıdaki proje bağlamını oku, sonra devam edeceğiz:
+> Her konuşmada `https://github.com/utkuco/HK-deneme` reposundaki `CONTEXT.md`
+> dosyasını oku. Önemli karar / açık soru / oturum özeti çıktığında ilgili
+> bölümü güncelle, Seran'a onay göster, onay sonrası `gh` ile commit + push et.
 
-[CONTEXT.md içeriğini buraya yapıştır]
-```
+**Seran'ın sorumluluğu:** Sadece onay vermek. Commit/push'u Claude yapıyor.
 
-3. Claude artık projenin nerede olduğunu biliyor, çalışmaya başlayabilirsiniz.
+`gh` CLI `~/.local/gh/` altına tarball ile kuruldu (Homebrew sahipliği bozuk olduğu için brew kullanılmadı). Auth aktif (`gh auth status` ile doğrulanabilir).
 
 ---
 
-## Oturum Sonunda (Arada da Yapılabilir)
+## Pratikte Nasıl Çalışıyor
 
-Önemli bir karar aldığında veya oturum uzadığında Claude'a şunu söyle:
+### Oturum başında
+Hiçbir şey yapmana gerek yok. Claude memory'sinden kuralı görüyor ve `CONTEXT.md`'yi kendisi okuyor.
 
+### Oturum sırasında / önemli karar anında
+Claude şöyle bir şey diyecek:
+
+> CONTEXT.md'nin "Alınan Kararlar" bölümüne şunu ekliyorum:
+> ```
+> - [x] X yerine Y kullanılacak çünkü Z. (2026-06-08, Seran)
+> ```
+> Onaylıyor musun?
+
+"Evet" / "tamam" deyince Claude `git commit` + `git push` yapıyor. Mesaj formatı:
 ```
-Bu oturumu özetle. CONTEXT.md'deki "Son Oturum Özeti (Seran)" bölümüne
-yazılacak bir güncelleme hazırla. Ayrıca varsa yeni kararları ve açık soruları da listele.
+Seran (Claude): <kısa açıklama>
 ```
 
-Claude bir metin üretecek. Bunu `CONTEXT.md` dosyasına yapıştır ve GitHub'a push et:
+### Oturum sonunda
+Claude'a "bu oturumu özetle" dediğinde "Son Oturum Özeti (Seran)" bölümünü hazırlıyor ve aynı onay-commit akışıyla push ediyor.
 
-1. GitHub'da `CONTEXT.md` dosyasını aç
-2. Sağ üstteki kalem ikonuna tıkla (Edit)
-3. İlgili bölümleri güncelle
-4. "Commit changes" butonuna bas → "Seran: oturum özeti güncellendi" gibi bir mesaj yaz
+### Manuel müdahale
+İstediğin zaman web UI'dan da edit edebilirsin — Claude her oturum başında `git pull` yapıyor (veya raw fetch ediyor), çakışma olmaz.
 
 ---
 
@@ -51,18 +59,20 @@ Claude bir metin üretecek. Bunu `CONTEXT.md` dosyasına yapıştır ve GitHub'a
 
 | Ne yapmak istiyorsun | Claude'a ne söyleyeceksin |
 |----------------------|--------------------------|
-| Oturum özetini çıkar | "Bu oturumu CONTEXT.md formatında özetle" |
+| Oturum özetini çıkar | "Bu oturumu CONTEXT.md'ye yaz" |
 | Karar al | "X konusunda karar verelim, seçenekleri listele" |
 | Bağlamı kontrol et | "Şu ana kadar ne kararlaştırdık?" |
 | Utku'ya mesaj bırak | "CONTEXT.md'ye Utku için bir not ekle: ..." |
+| Repo'yu yenile | "CONTEXT.md'yi tekrar oku, Utku güncellemiş olabilir" |
 
 ---
 
 ## Önemli Notlar
 
-- `CONTEXT.md`'yi her oturum başında **pull et** (GitHub sayfasını yenile)
-- Push etmeyi unutma — Utku senin güncellemelerini oradan okuyacak
-- Çakışma olursa (ikisi aynı anda düzenlerse) elle birleştirin
+- Claude `CONTEXT.md`'yi her oturum başında otomatik okur; sen ayrıca yapıştırmana gerek yok.
+- Her commit öncesi Claude sana metni gösterir — sessizce push etmez, onay kapısı her zaman var.
+- `BUTCE_YONETIMI.md` gibi ürün dökümanları için de aynı kural geçerli: Claude düzenler, sen onaylarsın, push olur.
+- Çakışma olursa (ikisi aynı anda düzenlerse) elle birleştirin.
 
 ---
 

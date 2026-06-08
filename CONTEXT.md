@@ -1,6 +1,6 @@
 # CONTEXT.md — Ortak Proje Bağlamı
 
-> Bu dosya her iki taraf tarafından güncellenir. En son değişiklik en üstte olmalı.
+> Bu dosya her iki taraf tarafından güncellenir.
 
 ---
 
@@ -12,30 +12,32 @@
 
 ## Proje Özeti
 
-**Bütçe Yönetimi Aracı** — Kişisel/ortak bütçeleri takip etmek, harcama alışkanlıklarını anlamak ve finansal hedeflere ulaşmak için sade bir uygulama.
+**HangiKredi Bütçe Yönetimi** — Açık bankacılık (OBS/HES) ile banka hesaplarını bağlayarak otomatik harcama takibi, kategori bazlı bütçe ve HangiKredi ürün önerileriyle entegre kişisel finans aracı.
 
-Detaylı döküman: [`BUTCE_YONETIMI.md`](./BUTCE_YONETIMI.md)
+Dökümanlar:
+- [`HK_BUTCE_YONETIMI.md`](./HK_BUTCE_YONETIMI.md) — Ana ürün dökümanı (detaylı)
+- [`BUTCE_YONETIMI.md`](./BUTCE_YONETIMI.md) — Genel bütçe araç konsepti
 
 ---
 
 ## Alınan Kararlar
-<!-- Henüz karar alınmadı, açık sorular var -->
-- Henüz yok — önce açık soruları yanıtlayacağız
+- ✅ Standalone özellik olarak konumlanacak
+- ✅ Veri kaynağı: Açık Bankacılık (OBS/HES), manuel giriş değil
+- ✅ 3 fazlı yol haritası: MVP → Büyüme → HK Entegrasyonu
 
 ---
 
 ## Açık Sorular / Bekleyen Maddeler
-- [ ] Platform: Web mi, Mobil mi, her ikisi mi?
-- [ ] Kullanıcı tipi: Tek kişi mi, aile/ortak bütçe mi?
-- [ ] Banka entegrasyonu olacak mı?
-- [ ] Para birimi: Sadece TL mi?
-- [ ] Mimari: Backend gerekli mi, local-first mi?
-- [ ] Teknoloji stack ne olacak?
+- [ ] Kategorileme: ML mi, kural motoru mu?
+- [ ] Banka bağlantısı: 3. parti aggregator mı, direkt BDDK API mi?
+- [ ] Platform önceliği: iOS / Android / Web?
+- [ ] Premium mi, ücretsiz mi?
+- [ ] Mevcut HK kullanıcı hesabıyla entegre mi?
 
 ---
 
 ## Son Oturum Özeti (Utku)
-**2026-06-08:** Proje başlatıldı. Bütçe yönetimi aracı üzerine çalışmaya karar verildi. `BUTCE_YONETIMI.md` dökümanı oluşturuldu — temel özellikler, ekranlar ve açık sorular listelendi.
+**2026-06-08:** HangiKredi bütçe yönetimi özelliği tasarlandı. Açık bankacılık entegrasyonu, 3 fazlı roadmap, ekranlar, başarı metrikleri ve teknik notlar dökümanlandı. Kritik farklılaşma: harcama verisi + ürün öneri motoru kombinasyonu.
 
 ---
 
